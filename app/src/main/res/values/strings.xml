@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">PlatziPodcasts</string>
+    <string name="btn_continue_welcome_screen">Continuar</string>
+    <string name="label_carousel_item_1">Podcast #1 de latinoamerica</string>
+    <string name="label_carousel_item_2">Conoce historias de crecimiento profesional de estudiantes, profesores y miembro del Platzi Team</string>
+    <string name="label_carousel_item_3">Aprende sobre cómo funciona el mundo de la tecnología.</string>
+</resources>
