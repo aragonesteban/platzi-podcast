@@ -1,10 +1,13 @@
 package com.example.platzipodcasts.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.platzipodcasts.features.shows.ShowsScreen
+import androidx.navigation.navArgument
+import com.example.platzipodcasts.features.home.HomeScreen
+import com.example.platzipodcasts.features.podcastshow.PodcastShowScreen
 import com.example.platzipodcasts.features.welcome.WelcomeScreen
 
 @Composable
@@ -12,10 +15,24 @@ fun NavConfig() {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = NavGraphScreens.WelcomeScreen.route) {
         composable(NavGraphScreens.WelcomeScreen.route) {
-            WelcomeScreen(navigateToHome = {
-                navController.navigate(NavGraphScreens.ShowsScreen.route)
-            })
+            WelcomeScreen {
+                navController.navigate(NavGraphScreens.HomeScreen.route)
+            }
         }
-        composable(NavGraphScreens.ShowsScreen.route) { ShowsScreen() }
+
+        composable(NavGraphScreens.HomeScreen.route) {
+            HomeScreen { podcastShowId ->
+                navController.navigate(NavGraphScreens.PodcastShowScreen(podcastShowId).routeWithId)
+            }
+        }
+
+        composable(
+            NavGraphScreens.PodcastShowScreen().route,
+            arguments = listOf(navArgument(name = PODCAST_SHOW_ID) {
+                type = NavType.IntType
+            })
+        ) {
+            PodcastShowScreen(podcastShowId = it.arguments?.getInt(PODCAST_SHOW_ID) ?: 0)
+        }
     }
 }

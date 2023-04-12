@@ -1,4 +1,4 @@
-package com.example.platzipodcasts.features.shows
+package com.example.platzipodcasts.features.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,12 +11,12 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ShowsViewModel @Inject constructor(
+class HomeViewModel @Inject constructor(
     private val showsRepository: ShowsRepository
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<ShowsUiState>(ShowsUiState.Loading)
-    val uiState: StateFlow<ShowsUiState> = _uiState
+    private val _uiState = MutableStateFlow<HomeUiState>(HomeUiState.Loading)
+    val uiState: StateFlow<HomeUiState> = _uiState
 
     init {
         getPodcastShows()
@@ -27,8 +27,11 @@ class ShowsViewModel @Inject constructor(
             showsRepository.getShows()
                 .collect {
                     _uiState.value = when (it) {
-                        is NetworkResult.Success -> ShowsUiState.ShowPodcastShows(it.data)
-                        is NetworkResult.Error -> ShowsUiState.Error
+                        is NetworkResult.Success -> HomeUiState.ShowPodcastHome(
+                            podcastShowCarousel = it.data.take(3),
+                            podcastShowGrid = it.data.takeLast(3)
+                        )
+                        is NetworkResult.Error -> HomeUiState.Error
                     }
                 }
         }
