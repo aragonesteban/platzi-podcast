@@ -1,4 +1,4 @@
-package com.example.platzipodcasts.data.repository.remote
+package com.example.platzipodcasts.data.remote.utils
 
 import retrofit2.Response
 import java.io.IOException

@@ -2,7 +2,8 @@ package com.example.platzipodcasts.features.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.platzipodcasts.data.repository.remote.NetworkResult
+import com.example.platzipodcasts.data.remote.utils.NetworkResult
+import com.example.platzipodcasts.data.repository.episodes.EpisodesRepository
 import com.example.platzipodcasts.data.repository.shows.ShowsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,7 +13,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val showsRepository: ShowsRepository
+    private val showsRepository: ShowsRepository,
+    private val episodesRepository: EpisodesRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<HomeUiState>(HomeUiState.Loading)
@@ -20,6 +22,11 @@ class HomeViewModel @Inject constructor(
 
     init {
         getPodcastShows()
+        viewModelScope.launch {
+            episodesRepository.getEpisodes().collect {
+                val hola = it
+            }
+        }
     }
 
     private fun getPodcastShows() {

@@ -1,4 +1,4 @@
-package com.example.platzipodcasts.data.repository.remote.shows
+package com.example.platzipodcasts.data.remote.shows
 
 import com.squareup.moshi.Json
 

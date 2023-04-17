@@ -1,6 +1,6 @@
 package com.example.platzipodcasts.data.mappers
 
-import com.example.platzipodcasts.data.repository.remote.shows.ShowResponse
+import com.example.platzipodcasts.data.remote.shows.ShowResponse
 import com.example.platzipodcasts.domain.models.PodcastShow
 import javax.inject.Inject
 
@@ -16,7 +16,7 @@ class ShowsMapper @Inject constructor() :
                     imageUrl = it.imageOriginalUrl.orEmpty(),
                     authorId = it.authorId ?: 0
                 )
-            } ?: listOf()
+            }.orEmpty()
         )
     }
 

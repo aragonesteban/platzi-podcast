@@ -1,10 +1,10 @@
 package com.example.platzipodcasts.data.repository.shows
 
 import com.example.platzipodcasts.data.mappers.PodcastMapper
-import com.example.platzipodcasts.data.repository.remote.NetworkResult
-import com.example.platzipodcasts.data.repository.remote.handleRequest
-import com.example.platzipodcasts.data.repository.remote.shows.ShowResponse
-import com.example.platzipodcasts.data.repository.remote.shows.ShowsApi
+import com.example.platzipodcasts.data.remote.utils.NetworkResult
+import com.example.platzipodcasts.data.remote.utils.handleRequest
+import com.example.platzipodcasts.data.remote.shows.ShowResponse
+import com.example.platzipodcasts.data.remote.shows.ShowsApi
 import com.example.platzipodcasts.domain.models.PodcastShow
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

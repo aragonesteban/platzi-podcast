@@ -1,4 +1,4 @@
-package com.example.platzipodcasts.data.repository.remote
+package com.example.platzipodcasts.data.remote.utils
 
 object SpeakerApiConstants {
     const val USERS = "users"
