@@ -22,3 +22,10 @@ sealed interface NetworkResult<out T : Any> {
     data class Error(val message: String? = String(), val code: Int? = null) :
         NetworkResult<Nothing>
 }
+
+inline fun <T : Any> NetworkResult<T>.handleNetworkResult(onSuccess: (T) -> Unit) {
+    when (this) {
+        is NetworkResult.Success -> onSuccess(data)
+        is NetworkResult.Error -> throw RuntimeException("There was an error $message $code")
+    }
+}

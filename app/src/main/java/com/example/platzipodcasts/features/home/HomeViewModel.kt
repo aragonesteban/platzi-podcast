@@ -2,14 +2,14 @@ package com.example.platzipodcasts.features.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.platzipodcasts.data.remote.utils.NetworkResult
 import com.example.platzipodcasts.data.repository.episodes.EpisodesRepository
 import com.example.platzipodcasts.data.repository.shows.ShowsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
+typealias ContentHome<Shows, Episodes> = Pair<Shows, Episodes>
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
@@ -21,26 +21,27 @@ class HomeViewModel @Inject constructor(
     val uiState: StateFlow<HomeUiState> = _uiState
 
     init {
-        getPodcastShows()
-        viewModelScope.launch {
-            episodesRepository.getEpisodes().collect {
-                val hola = it
-            }
-        }
+        getContentHome()
     }
 
-    private fun getPodcastShows() {
+    private fun getContentHome() {
         viewModelScope.launch {
-            showsRepository.getShows()
-                .collect {
-                    _uiState.value = when (it) {
-                        is NetworkResult.Success -> HomeUiState.ShowPodcastHome(
-                            podcastShowCarousel = it.data.take(3),
-                            podcastShowGrid = it.data.takeLast(3)
-                        )
-                        is NetworkResult.Error -> HomeUiState.Error
-                    }
+            combine(
+                showsRepository.getShows(),
+                episodesRepository.getEpisodes()
+            ) { shows, episodes ->
+                ContentHome(shows, episodes)
+            }
+                .onStart { _uiState.value = HomeUiState.Loading }
+                .catch { _uiState.value = HomeUiState.Error }
+                .collect { contentHome ->
+                    _uiState.value = HomeUiState.ShowContentHome(
+                        showsCarouselList = contentHome.first.take(3),
+                        showsGrid = contentHome.first.takeLast(4),
+                        episodesList = contentHome.second,
+                    )
                 }
         }
     }
+
 }
