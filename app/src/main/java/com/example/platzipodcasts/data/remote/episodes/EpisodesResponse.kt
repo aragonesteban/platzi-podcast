@@ -1,6 +1,7 @@
 package com.example.platzipodcasts.data.remote.episodes
 
 import com.squareup.moshi.Json
+import java.time.Duration
 
 data class EpisodesResponse(
     val response: EpisodesItemsResponse?
@@ -16,4 +17,5 @@ data class EpisodeItemResponse(
     val title: String?,
     @Json(name = "image_original_url")
     val imageOriginalUrl: String?,
+    val duration: Int?
 )

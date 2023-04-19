@@ -56,7 +56,7 @@ fun HomeItem(
         if (text != null)
             Text(
                 text = text,
-                style = MaterialTheme.typography.labelSmall,
+                style = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier.padding(start = 4.dp, top = 8.dp),
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis
@@ -66,12 +66,38 @@ fun HomeItem(
 
 @Preview
 @Composable
-fun HomeShowsCarouselItemPreview() {
+fun HomeItemForShowsCarouselPreview() {
     HomeItem(
         image = "",
-        text = "",
+        text = null,
         modifier = Modifier
             .size(width = 280.dp, height = 180.dp)
+            .clickable { }
+    )
+}
+
+@Preview
+@Composable
+fun HomeItemForEpisodesCarouselPreview() {
+    HomeItem(
+        image = "",
+        text = "This is an episode",
+        modifierCard = Modifier.size(width = 100.dp, height = 100.dp),
+        modifier = Modifier
+            .width(100.dp)
+            .clickable { }
+    )
+}
+
+@Preview
+@Composable
+fun HomeItemForShowsGridPreview() {
+    HomeItem(
+        image = "",
+        text = null,
+        modifierCard = Modifier
+            .fillMaxWidth()
+            .height(100.dp)
             .clickable { }
     )
 }

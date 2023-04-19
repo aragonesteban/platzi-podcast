@@ -33,7 +33,7 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigateToShow: (Int)
                     HomeHeader()
                     HomeShowsCarousel(state.showsCarouselList) { showId -> navigateToShow(showId) }
                     HomeEpisodesCarousel(state.episodesList)
-                    HomeShowsGrid(state.showsGrid)
+                    HomeShowsGrid(state.showsGrid) { showId -> navigateToShow(showId) }
                 }
                 HomeUiState.Error -> {
                     Toast.makeText(context, "Hubo un error", Toast.LENGTH_SHORT).show()

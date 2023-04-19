@@ -11,7 +11,7 @@ import androidx.compose.ui.unit.dp
 import com.example.platzipodcasts.domain.models.PodcastShow
 
 @Composable
-fun HomeShowsGrid(showsList: List<PodcastShow>) {
+fun HomeShowsGrid(showsList: List<PodcastShow>, onClickShow: (Int) -> Unit) {
     Column(
         modifier = Modifier
             .padding(top = 16.dp)
@@ -30,7 +30,7 @@ fun HomeShowsGrid(showsList: List<PodcastShow>) {
                     modifierCard = Modifier
                         .fillMaxWidth()
                         .height(100.dp)
-                        .clickable { })
+                        .clickable { onClickShow(it.id) })
             }
         }
     }

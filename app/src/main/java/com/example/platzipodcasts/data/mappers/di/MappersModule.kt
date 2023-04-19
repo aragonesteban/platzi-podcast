@@ -4,7 +4,7 @@ import com.example.platzipodcasts.data.mappers.EpisodesMapper
 import com.example.platzipodcasts.data.mappers.PodcastMapper
 import com.example.platzipodcasts.data.mappers.ShowsMapper
 import com.example.platzipodcasts.data.remote.episodes.EpisodesResponse
-import com.example.platzipodcasts.data.remote.shows.ShowResponse
+import com.example.platzipodcasts.data.remote.shows.ShowsResponse
 import com.example.platzipodcasts.domain.models.Episode
 import com.example.platzipodcasts.domain.models.PodcastShow
 import dagger.Binds
@@ -19,7 +19,7 @@ abstract class MappersModule {
     @Binds
     abstract fun bindsPodcastShowsMapper(
         showsMapper: ShowsMapper
-    ): PodcastMapper<ShowResponse, ArrayList<PodcastShow>>
+    ): PodcastMapper<ShowsResponse, ArrayList<PodcastShow>>
 
     @Binds
     abstract fun bindsEpisodesMapper(

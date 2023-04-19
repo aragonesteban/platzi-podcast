@@ -5,4 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface ShowsRepository {
     suspend fun getShows(): Flow<List<PodcastShow>>
+    suspend fun getShowById(): Flow
 }

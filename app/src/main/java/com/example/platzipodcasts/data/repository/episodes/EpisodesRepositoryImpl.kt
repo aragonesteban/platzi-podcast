@@ -24,4 +24,12 @@ class EpisodesRepositoryImpl @Inject constructor(
         }
     }
 
+    override fun getEpisodesByShowId(showId: Int): Flow<List<Episode>> {
+        return flow {
+            val result = episodesApi.getEpisodesByShowId(showId).handleRequest { data ->
+                mapper.map(data)
+            }
+            result.handleNetworkResult { data -> emit(data) }
+        }
+    }
 }

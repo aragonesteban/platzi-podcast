@@ -2,11 +2,11 @@ package com.example.platzipodcasts.data.remote.shows
 
 import com.squareup.moshi.Json
 
-data class ShowResponse(
-    val response: ShowItemsResponse?
+data class ShowsResponse(
+    val response: ShowsItemsResponse?
 )
 
-data class ShowItemsResponse(
+data class ShowsItemsResponse(
     val items: List<ShowItemResponse>? = listOf()
 )
 

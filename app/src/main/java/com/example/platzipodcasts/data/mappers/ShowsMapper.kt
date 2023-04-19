@@ -1,20 +1,19 @@
 package com.example.platzipodcasts.data.mappers
 
-import com.example.platzipodcasts.data.remote.shows.ShowResponse
+import com.example.platzipodcasts.data.remote.shows.ShowsResponse
 import com.example.platzipodcasts.domain.models.PodcastShow
 import javax.inject.Inject
 
 class ShowsMapper @Inject constructor() :
-    PodcastMapper<ShowResponse, ArrayList<PodcastShow>> {
+    PodcastMapper<ShowsResponse, ArrayList<PodcastShow>> {
 
-    override fun map(input: ShowResponse): ArrayList<PodcastShow> {
+    override fun map(input: ShowsResponse): ArrayList<PodcastShow> {
         return ArrayList(
             input.response?.items?.map {
                 PodcastShow(
                     id = getShowId(it.showId),
                     title = it.title.orEmpty(),
-                    imageUrl = it.imageOriginalUrl.orEmpty(),
-                    authorId = it.authorId ?: 0
+                    imageUrl = it.imageOriginalUrl.orEmpty()
                 )
             }.orEmpty()
         )

@@ -5,4 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface EpisodesRepository {
     fun getEpisodes(): Flow<List<Episode>>
+    fun getEpisodesByShowId(showId: Int): Flow<List<Episode>>
 }

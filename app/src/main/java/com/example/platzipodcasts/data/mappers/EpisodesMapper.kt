@@ -12,7 +12,8 @@ class EpisodesMapper @Inject constructor() : PodcastMapper<EpisodesResponse, Arr
                 Episode(
                     id = getEpisodeId(item.id),
                     title = item.title.orEmpty(),
-                    imageUrl = item.imageOriginalUrl.orEmpty()
+                    imageUrl = item.imageOriginalUrl.orEmpty(),
+                    duration = formatMilliseconds(milliseconds = item.duration?.toLong() ?: 0)
                 )
             }.orEmpty()
         )
@@ -24,4 +25,10 @@ class EpisodesMapper @Inject constructor() : PodcastMapper<EpisodesResponse, Arr
         }
     }
 
+    private fun formatMilliseconds(milliseconds: Long): String {
+        val totalSeconds = milliseconds / 1000
+        val minutes = totalSeconds / 60
+        val seconds = totalSeconds % 60
+        return "%02d:%02d".format(minutes, seconds)
+    }
 }
