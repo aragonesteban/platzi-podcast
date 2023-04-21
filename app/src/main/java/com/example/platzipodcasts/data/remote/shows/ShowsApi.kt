@@ -10,7 +10,7 @@ import retrofit2.http.Path
 interface ShowsApi {
 
     @GET("/v2/$USERS/15392018/shows")
-    suspend fun getShows(): Response<ShowsResponse>
+    suspend fun getShows(): Response<PodcastShowsResponse>
 
     @GET("/v2/$SHOWS/{$SHOW_ID}")
     suspend fun getShowById(

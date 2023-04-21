@@ -2,15 +2,15 @@ package com.example.platzipodcasts.data.remote.shows
 
 import com.squareup.moshi.Json
 
-data class ShowsResponse(
-    val response: ShowsItemsResponse?
+data class PodcastShowsResponse(
+    val response: PodcastShowsItemsResponse?
 )
 
-data class ShowsItemsResponse(
-    val items: List<ShowItemResponse>? = listOf()
+data class PodcastShowsItemsResponse(
+    val items: List<PodcastShowItemResponse>? = listOf()
 )
 
-data class ShowItemResponse(
+data class PodcastShowItemResponse(
     @Json(name = "show_id")
     val showId: Int?,
     val title: String?,
