@@ -8,7 +8,7 @@ import javax.inject.Inject
 class ShowMapper @Inject constructor() : PodcastMapper<ShowDetailResponse, ShowDetail> {
 
     override fun map(input: ShowDetailResponse): ShowDetail {
-        with(input.show) {
+        with(input.response.show) {
             return ShowDetail(
                 id = showId.getShowId(),
                 title = title.orEmpty(),

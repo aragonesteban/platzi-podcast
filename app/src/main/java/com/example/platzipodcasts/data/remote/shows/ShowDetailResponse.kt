@@ -3,6 +3,10 @@ package com.example.platzipodcasts.data.remote.shows
 import com.squareup.moshi.Json
 
 data class ShowDetailResponse(
+    val response: ShowDetailItemResponse
+)
+
+data class ShowDetailItemResponse(
     val show: ShowDetailDataResponse
 )
 

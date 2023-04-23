@@ -32,7 +32,10 @@ fun NavConfig() {
                 type = NavType.IntType
             })
         ) {
-            PodcastShowScreen(podcastShowId = it.arguments?.getInt(PODCAST_SHOW_ID) ?: 0)
+            PodcastShowScreen(
+                podcastShowId = it.arguments?.getInt(PODCAST_SHOW_ID) ?: 0,
+                navController = navController
+            )
         }
     }
 }
