@@ -1,5 +1,6 @@
 package com.example.platzipodcasts.features.podcastshow
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PlayCircleFilled
@@ -10,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -21,27 +23,35 @@ fun PodcastShowEpisodeItem(episode: Episode) {
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
+            .clickable { }
             .fillMaxWidth()
             .height(IntrinsicSize.Max)
             .padding(16.dp)
     ) {
-        Row {
-            Card(modifier = Modifier.size(width = 80.dp, height = 80.dp)) {
-                AsyncImage(model = episode.imageUrl, contentDescription = null)
-            }
-            Spacer(modifier = Modifier.width(16.dp))
-            Column(
-                verticalArrangement = Arrangement.Center,
-                modifier = Modifier.fillMaxHeight(),
-            ) {
-                Text(text = episode.title, style = MaterialTheme.typography.headlineSmall)
-                Text(text = episode.duration, modifier = Modifier.padding(top = 8.dp))
-            }
+        Card(modifier = Modifier.size(width = 80.dp, height = 80.dp)) {
+            AsyncImage(model = episode.imageUrl, contentDescription = null)
+        }
+        Spacer(modifier = Modifier.width(16.dp))
+        Column(
+            verticalArrangement = Arrangement.Center,
+            modifier = Modifier
+                .fillMaxHeight()
+                .weight(5F),
+        ) {
+            Text(
+                text = episode.title,
+                style = MaterialTheme.typography.bodyLarge,
+                maxLines = 3,
+                overflow = TextOverflow.Ellipsis,
+            )
+            Text(text = episode.duration, modifier = Modifier.padding(top = 8.dp))
         }
         Icon(
             imageVector = Icons.Filled.PlayCircleFilled,
             contentDescription = null,
-            modifier = Modifier.size(40.dp)
+            modifier = Modifier
+                .size(30.dp)
+                .weight(1F)
         )
     }
 }
@@ -50,6 +60,6 @@ fun PodcastShowEpisodeItem(episode: Episode) {
 @Composable
 fun PodcastShowEpisodeItemPreview() {
     PodcastShowEpisodeItem(
-        Episode(1, "My Episode", "", "14:10")
+        Episode(1, "My Episode My Episode My Episode", "", "14:10")
     )
 }

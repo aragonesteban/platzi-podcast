@@ -21,7 +21,7 @@ fun PodcastShowDetail(showDetail: ShowDetail) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(8.dp),
-        modifier = Modifier.padding(horizontal = 16.dp)
+        modifier = Modifier.padding(16.dp)
     ) {
         Card(
             elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
