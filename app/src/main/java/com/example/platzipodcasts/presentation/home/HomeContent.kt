@@ -8,9 +8,14 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavController
+import com.example.platzipodcasts.navigation.NavGraphScreens
 
 @Composable
-fun HomeContent(state: HomeUiState.ShowContentHome, goToShow: (Int) -> Unit) {
+fun HomeContent(
+    content: HomeUiState.ShowContentHome,
+    navController: NavController
+) {
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -18,8 +23,14 @@ fun HomeContent(state: HomeUiState.ShowContentHome, goToShow: (Int) -> Unit) {
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
     ) {
-        HomeShowsCarousel(state.showsCarouselList) { showId -> goToShow(showId) }
-        HomeEpisodesCarousel(state.episodesList)
-        HomeShowsGrid(state.showsGrid) { showId -> goToShow(showId) }
+        HomeShowsCarousel(content.showsCarouselList) { showId ->
+            navController.navigate(NavGraphScreens.PodcastShowScreen(showId).routeWithId)
+        }
+        HomeEpisodesList(content.episodesList) { episodeId ->
+            navController.navigate(NavGraphScreens.EpisodeScreen(episodeId).routeWithId)
+        }
+        HomeShowsGrid(content.showsGrid) { showId ->
+            navController.navigate(NavGraphScreens.PodcastShowScreen(showId).routeWithId)
+        }
     }
 }

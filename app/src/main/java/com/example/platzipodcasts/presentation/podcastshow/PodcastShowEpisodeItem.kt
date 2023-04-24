@@ -18,15 +18,13 @@ import coil.compose.AsyncImage
 import com.example.platzipodcasts.domain.models.Episode
 
 @Composable
-fun PodcastShowEpisodeItem(episode: Episode) {
+fun PodcastShowEpisodeItem(episode: Episode, modifier: Modifier = Modifier) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
-            .clickable { }
+        modifier = modifier
             .fillMaxWidth()
             .height(IntrinsicSize.Max)
-            .padding(16.dp)
     ) {
         Card(modifier = Modifier.size(width = 80.dp, height = 80.dp)) {
             AsyncImage(model = episode.imageUrl, contentDescription = null)
@@ -44,7 +42,11 @@ fun PodcastShowEpisodeItem(episode: Episode) {
                 maxLines = 3,
                 overflow = TextOverflow.Ellipsis,
             )
-            Text(text = episode.duration, modifier = Modifier.padding(top = 8.dp))
+            Text(
+                text = episode.duration,
+                style = MaterialTheme.typography.bodySmall,
+                modifier = Modifier.padding(top = 8.dp)
+            )
         }
         Icon(
             imageVector = Icons.Filled.PlayCircleFilled,

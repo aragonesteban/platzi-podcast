@@ -28,9 +28,7 @@ fun PodcastShowScreen(
                 CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
             }
             is PodcastShowUiState.ShowContentPodcastShow -> {
-                PodcastShowScreenContent(state.showDetail, state.episodes) {
-                    navController.popBackStack()
-                }
+                PodcastShowScreenContent(state.showDetail, state.episodes, navController)
             }
             PodcastShowUiState.Error -> {
                 Toast.makeText(context, "Hubo un error", Toast.LENGTH_SHORT).show()
