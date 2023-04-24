@@ -1,4 +1,4 @@
-package com.example.platzipodcasts.features.home
+package com.example.platzipodcasts.presentation.home
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -32,25 +32,12 @@ fun HomeItem(
             shape = RoundedCornerShape(16.dp),
             elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
             content = {
-                val colorsGradient = listOf(
-                    Color.Transparent,
-                    Color(0xA3000000)
+                AsyncImage(
+                    model = image,
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.fillMaxSize()
                 )
-                Box {
-                    AsyncImage(
-                        model = image,
-                        contentDescription = null,
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .alpha(0.7F)
-                    )
-                    Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .background(Brush.verticalGradient(colors = colorsGradient))
-                    )
-                }
             }
         )
         if (text != null)

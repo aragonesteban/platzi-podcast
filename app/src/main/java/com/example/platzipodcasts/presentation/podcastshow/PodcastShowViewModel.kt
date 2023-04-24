@@ -1,4 +1,4 @@
-package com.example.platzipodcasts.features.podcastshow
+package com.example.platzipodcasts.presentation.podcastshow
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

@@ -1,4 +1,4 @@
-package com.example.platzipodcasts.features.welcome
+package com.example.platzipodcasts.presentation.welcome
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

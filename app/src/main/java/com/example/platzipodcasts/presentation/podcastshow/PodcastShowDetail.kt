@@ -1,4 +1,4 @@
-package com.example.platzipodcasts.features.podcastshow
+package com.example.platzipodcasts.presentation.podcastshow
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Card

@@ -1,4 +1,4 @@
-package com.example.platzipodcasts.features.home
+package com.example.platzipodcasts.presentation.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -18,31 +18,35 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.platzipodcasts.ui.theme.md_theme_light_onSurface
 
 @Composable
 fun HomeHeader(modifier: Modifier = Modifier) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
-        modifier = modifier.fillMaxWidth().padding(16.dp)
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(16.dp)
     ) {
         Column {
             Text(
                 text = "Hey you!",
                 style = MaterialTheme.typography.headlineSmall,
-                fontWeight = FontWeight.SemiBold
+                fontWeight = FontWeight.SemiBold,
+                color = md_theme_light_onSurface
             )
             Text(
                 text = "Encuentra los Podcasts creados por Platzi",
                 style = MaterialTheme.typography.labelLarge,
-                modifier = Modifier.padding(top = 8.dp)
+                modifier = Modifier.padding(top = 8.dp),
+                color = md_theme_light_onSurface
             )
         }
         IconButton(
-            onClick = { },
-            modifier = Modifier.size(48.dp)
+            onClick = { }, modifier = Modifier.size(48.dp)
         ) {
-            Icon(Icons.Default.Search, contentDescription = "")
+            Icon(Icons.Default.Search, contentDescription = "", tint = md_theme_light_onSurface)
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.platzipodcasts.features.podcastshow
+package com.example.platzipodcasts.presentation.podcastshow
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn

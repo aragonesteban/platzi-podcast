@@ -1,4 +1,4 @@
-package com.example.platzipodcasts.features.home
+package com.example.platzipodcasts.presentation.home
 
 import com.example.platzipodcasts.domain.models.Episode
 import com.example.platzipodcasts.domain.models.PodcastShow

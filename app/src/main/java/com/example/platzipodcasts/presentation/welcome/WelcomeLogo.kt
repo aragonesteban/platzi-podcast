@@ -1,4 +1,4 @@
-package com.example.platzipodcasts.features.welcome
+package com.example.platzipodcasts.presentation.welcome
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.isSystemInDarkTheme

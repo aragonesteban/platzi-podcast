@@ -1,4 +1,4 @@
-package com.example.platzipodcasts.features.home
+package com.example.platzipodcasts.presentation.home
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -11,8 +11,8 @@ fun HomeTitleSection(title: String, modifier: Modifier) {
     Text(
         text = title,
         fontWeight = FontWeight.SemiBold,
-        style = MaterialTheme.typography.bodyLarge,
-        color = MaterialTheme.colorScheme.onPrimaryContainer,
+        style = MaterialTheme.typography.titleMedium,
+        color = MaterialTheme.colorScheme.onSurface,
         modifier = modifier
     )
 }

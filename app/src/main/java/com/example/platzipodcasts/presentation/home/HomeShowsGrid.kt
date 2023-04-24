@@ -1,4 +1,4 @@
-package com.example.platzipodcasts.features.home
+package com.example.platzipodcasts.presentation.home
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*

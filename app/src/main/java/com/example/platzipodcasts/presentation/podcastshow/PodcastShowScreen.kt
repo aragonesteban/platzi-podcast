@@ -1,4 +1,4 @@
-package com.example.platzipodcasts.features.podcastshow
+package com.example.platzipodcasts.presentation.podcastshow
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Box
