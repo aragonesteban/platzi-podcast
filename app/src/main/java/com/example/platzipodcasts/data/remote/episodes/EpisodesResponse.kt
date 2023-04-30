@@ -4,11 +4,13 @@ import com.squareup.moshi.Json
 import java.time.Duration
 
 data class EpisodesResponse(
-    val response: EpisodesItemsResponse?
+    val response: EpisodesItemsResponse?,
 )
 
 data class EpisodesItemsResponse(
-    val items: List<EpisodeItemResponse>? = listOf()
+    val items: List<EpisodeItemResponse>? = listOf(),
+    @Json(name = "next_url")
+    val nextUrl: String?
 )
 
 data class EpisodeItemResponse(

@@ -27,14 +27,23 @@ fun PodcastShowScreen(
             PodcastShowUiState.Loading -> {
                 CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
             }
-            is PodcastShowUiState.ShowContentPodcastShow -> {
-                PodcastShowScreenContent(state.showDetail, state.episodes, navController)
+            is PodcastShowUiState.ShowDetailPodcastShow -> {
+                PodcastShowScreenContent(
+                    state.showDetail,
+                    state.episodes,
+                    navController,
+                    onLoadMoreEpisodes = { viewModel.getMoreEpisodes() }
+                )
+            }
+            is PodcastShowUiState.ShowEpisodesList -> {
+
             }
             PodcastShowUiState.Error -> {
                 Toast.makeText(context, "Hubo un error", Toast.LENGTH_SHORT).show()
             }
         }
         LaunchedEffect(true) {
+            viewModel.getShowDetailById(podcastShowId)
             viewModel.getEpisodesByShowId(podcastShowId)
         }
     }

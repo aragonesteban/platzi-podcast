@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.platzipodcasts.data.repository.episodes.EpisodesRepository
 import com.example.platzipodcasts.data.repository.shows.ShowsRepository
+import com.example.platzipodcasts.domain.models.Episode
+import com.example.platzipodcasts.domain.models.Episodes
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch

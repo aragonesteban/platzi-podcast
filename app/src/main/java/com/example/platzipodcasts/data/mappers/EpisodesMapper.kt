@@ -1,21 +1,28 @@
 package com.example.platzipodcasts.data.mappers
 
+import com.example.platzipodcasts.data.remote.episodes.EpisodeItemResponse
 import com.example.platzipodcasts.data.remote.episodes.EpisodesResponse
 import com.example.platzipodcasts.domain.models.Episode
+import com.example.platzipodcasts.domain.models.Episodes
 import javax.inject.Inject
 
-class EpisodesMapper @Inject constructor() : PodcastMapper<EpisodesResponse, ArrayList<Episode>> {
+class EpisodesMapper @Inject constructor() : PodcastMapper<EpisodesResponse, Episodes> {
 
-    override fun map(input: EpisodesResponse): ArrayList<Episode> {
-        return ArrayList(
-            input.response?.items?.map { item ->
-                Episode(
-                    id = getEpisodeId(item.id),
-                    title = item.title.orEmpty(),
-                    imageUrl = item.imageOriginalUrl.orEmpty(),
-                    duration = formatMilliseconds(milliseconds = item.duration?.toLong() ?: 0)
-                )
-            }.orEmpty()
+    override fun map(input: EpisodesResponse): Episodes {
+        return input.response?.takeIf { true }?.let { response ->
+            Episodes(
+                nextUrl = response.nextUrl.orEmpty(),
+                episodes = response.items?.map(::mapEpisodesList).orEmpty()
+            )
+        } ?: run { throw IllegalArgumentException("response is required to get episodes") }
+    }
+
+    private fun mapEpisodesList(episode: EpisodeItemResponse): Episode {
+        return Episode(
+            id = getEpisodeId(episode.id),
+            title = episode.title.orEmpty(),
+            imageUrl = episode.imageOriginalUrl.orEmpty(),
+            duration = formatMilliseconds(milliseconds = episode.duration?.toLong() ?: 0)
         )
     }
 

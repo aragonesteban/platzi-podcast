@@ -51,6 +51,7 @@ fun PodcastShowEpisodeItem(episode: Episode, modifier: Modifier = Modifier) {
         Icon(
             imageVector = Icons.Filled.PlayCircleFilled,
             contentDescription = null,
+            tint = MaterialTheme.colorScheme.onTertiaryContainer,
             modifier = Modifier
                 .size(30.dp)
                 .weight(1F)
