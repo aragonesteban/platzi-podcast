@@ -4,12 +4,13 @@ import com.example.platzipodcasts.domain.models.Episode
 import com.example.platzipodcasts.domain.models.ShowDetail
 
 sealed interface PodcastShowUiState {
-    object Loading : PodcastShowUiState
+    object LoadingShowDetail : PodcastShowUiState
 
-    data class ShowContentPodcastShow(
-        val showDetail: ShowDetail,
-        val episodes: List<Episode>
-    ) : PodcastShowUiState
+    object LoadingEpisodes : PodcastShowUiState
+
+    data class ShowContentShowDetail(val data: ShowDetail) : PodcastShowUiState
+
+    data class ShowEpisodes(val data: List<Episode>) : PodcastShowUiState
 
     object Error : PodcastShowUiState
 }

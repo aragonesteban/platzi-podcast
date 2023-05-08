@@ -12,40 +12,41 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-typealias ContentPodcastShow<ShowDetail, Episodes> = Pair<ShowDetail, Episodes>
-
 @HiltViewModel
 class PodcastShowViewModel @Inject constructor(
     private val episodesRepository: EpisodesRepository,
     private val showsRepository: ShowsRepository,
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<PodcastShowUiState>(PodcastShowUiState.Loading)
+    private val _uiState =
+        MutableStateFlow<PodcastShowUiState>(PodcastShowUiState.LoadingShowDetail)
     val uiState: StateFlow<PodcastShowUiState> = _uiState
 
     private var episodes: Episodes? = null
     private var showDetail: ShowDetail? = null
 
-    fun getEpisodesByShowId(showId: Int) {
+    fun getShowDetailById(showId: Int) {
         viewModelScope.launch {
-            combine(
-                showsRepository.getShowById(showId),
-                episodesRepository.getEpisodesByShowId(showId),
-            ) { showDetail, episodes ->
-                ContentPodcastShow(showDetail, episodes)
-            }
-                .onStart { _uiState.value = PodcastShowUiState.Loading }
+            showsRepository.getShowById(showId)
+                .onStart { _uiState.value = PodcastShowUiState.LoadingShowDetail }
                 .catch { _uiState.value = PodcastShowUiState.Error }
-                .collect { contentPodcastShow ->
-                    episodes = contentPodcastShow.second
-                    showDetail = contentPodcastShow.first
-                    _uiState.value = PodcastShowUiState.ShowContentPodcastShow(
-                        showDetail = contentPodcastShow.first,
-                        episodes = contentPodcastShow.second.episodesList
-                    )
+                .collect {
+                    _uiState.value = PodcastShowUiState.ShowContentShowDetail(data = it)
                 }
         }
     }
+
+    fun getEpisodesByShowId(showId: Int) {
+        viewModelScope.launch {
+            episodesRepository.getEpisodesByShowId(showId)
+                .onStart { _uiState.value = PodcastShowUiState.LoadingEpisodes }
+                .catch { _uiState.value = PodcastShowUiState.Error }
+                .collect {
+                    _uiState.value = PodcastShowUiState.ShowEpisodes(data = it.episodesList)
+                }
+        }
+    }
+
 
     fun getMoreEpisodes() {
         viewModelScope.launch {
@@ -56,11 +57,6 @@ class PodcastShowViewModel @Inject constructor(
                         .collect { result ->
                             nextUrl = result.nextUrl
                             episodesList = episodes?.episodesList.orEmpty() + result.episodesList
-                            _uiState.value =
-                                PodcastShowUiState.ShowContentPodcastShow(
-                                    showDetail = showDetail,
-                                    episodes = episodesList
-                                )
                         }
                 }
             }
