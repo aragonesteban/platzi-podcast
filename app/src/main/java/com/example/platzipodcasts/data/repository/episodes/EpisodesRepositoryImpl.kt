@@ -17,8 +17,7 @@ import javax.inject.Inject
 
 class EpisodesRepositoryImpl @Inject constructor(
     private val episodesApi: EpisodesApi,
-    private val mapper: PodcastMapper<EpisodesResponse, Episodes>,
-    private val dispatcherIO: CoroutineDispatcher = Dispatchers.IO
+    private val mapper: PodcastMapper<EpisodesResponse, Episodes>
 ) : EpisodesRepository {
 
     override fun getEpisodes(): Flow<List<Episode>> {
@@ -26,8 +25,8 @@ class EpisodesRepositoryImpl @Inject constructor(
             val result = episodesApi.getEpisodes().handleRequest { data ->
                 mapper.map(data)
             }
-            result.handleNetworkResult { data -> emit(data.episodes) }
-        }.flowOn(dispatcherIO)
+            result.handleNetworkResult { data -> emit(data.episodesList) }
+        }.flowOn(Dispatchers.IO)
     }
 
     override fun getEpisodesByShowId(showId: Int): Flow<Episodes> {
@@ -36,7 +35,7 @@ class EpisodesRepositoryImpl @Inject constructor(
                 mapper.map(data)
             }
             result.handleNetworkResult { data -> emit(data) }
-        }.flowOn(dispatcherIO)
+        }.flowOn(Dispatchers.IO)
     }
 
     override fun getEpisodesByUrl(url: String): Flow<Episodes> {
@@ -45,7 +44,7 @@ class EpisodesRepositoryImpl @Inject constructor(
                 mapper.map(data)
             }
             result.handleNetworkResult { data -> emit(data) }
-        }.flowOn(dispatcherIO)
+        }.flowOn(Dispatchers.IO)
     }
 
 }

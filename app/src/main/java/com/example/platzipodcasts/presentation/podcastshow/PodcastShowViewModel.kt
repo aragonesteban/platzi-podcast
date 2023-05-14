@@ -18,20 +18,18 @@ class PodcastShowViewModel @Inject constructor(
     private val showsRepository: ShowsRepository,
 ) : ViewModel() {
 
-    private val _uiState =
-        MutableStateFlow<PodcastShowUiState>(PodcastShowUiState.LoadingShowDetail)
+    private val _uiState = MutableStateFlow(PodcastShowUiState())
     val uiState: StateFlow<PodcastShowUiState> = _uiState
 
-    private var episodes: Episodes? = null
-    private var showDetail: ShowDetail? = null
+    private var nextUrl: String = ""
 
     fun getShowDetailById(showId: Int) {
         viewModelScope.launch {
             showsRepository.getShowById(showId)
-                .onStart { _uiState.value = PodcastShowUiState.LoadingShowDetail }
-                .catch { _uiState.value = PodcastShowUiState.Error }
+                .onStart { _uiState.value = PodcastShowUiState(isLoading = true) }
+                .catch { _uiState.value = PodcastShowUiState(isError = true)  }
                 .collect {
-                    _uiState.value = PodcastShowUiState.ShowContentShowDetail(data = it)
+                    _uiState.value = _uiState.value.copy(showDetail = it, isLoading = false)
                 }
         }
     }
@@ -39,28 +37,25 @@ class PodcastShowViewModel @Inject constructor(
     fun getEpisodesByShowId(showId: Int) {
         viewModelScope.launch {
             episodesRepository.getEpisodesByShowId(showId)
-                .onStart { _uiState.value = PodcastShowUiState.LoadingEpisodes }
-                .catch { _uiState.value = PodcastShowUiState.Error }
-                .collect {
-                    _uiState.value = PodcastShowUiState.ShowEpisodes(data = it.episodesList)
+                .onStart { _uiState.value = PodcastShowUiState(isLoading = true) }
+                .catch { _uiState.value = PodcastShowUiState(isError = true) }
+                .collect{
+                    nextUrl = it.nextUrl
+                    _uiState.value =
+                        _uiState.value.copy(episodes = it.episodesList, isLoading = false)
                 }
         }
     }
-
 
     fun getMoreEpisodes() {
         viewModelScope.launch {
-            episodes = episodes?.apply {
-                nextUrl.takeIf { true }?.let { url ->
-                    episodesRepository.getEpisodesByUrl(url)
-                        .catch { _uiState.value = PodcastShowUiState.Error }
-                        .collect { result ->
-                            nextUrl = result.nextUrl
-                            episodesList = episodes?.episodesList.orEmpty() + result.episodesList
-                        }
-                }
+            nextUrl.takeIf { it.isNotBlank() }?.let { url ->
+                episodesRepository.getEpisodesByUrl(url)
+                    .collect { result ->
+                        nextUrl = result.nextUrl
+                        _uiState.value = _uiState.value.copy(episodes = _uiState.value.episodes + result.episodesList)
+                    }
             }
         }
     }
-
 }

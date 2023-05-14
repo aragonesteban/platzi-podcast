@@ -12,7 +12,7 @@ class EpisodesMapper @Inject constructor() : PodcastMapper<EpisodesResponse, Epi
         return input.response?.takeIf { true }?.let { response ->
             Episodes(
                 nextUrl = response.nextUrl.orEmpty(),
-                episodes = response.items?.map(::mapEpisodesList).orEmpty()
+                episodesList = response.items?.map(::mapEpisodesList).orEmpty()
             )
         } ?: run { throw IllegalArgumentException("response is required to get episodes") }
     }

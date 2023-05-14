@@ -6,38 +6,49 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.key
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.platzipodcasts.domain.models.Episode
-import com.example.platzipodcasts.domain.models.ShowDetail
 import com.example.platzipodcasts.navigation.NavGraphScreens
 
 @Composable
 fun PodcastShowScreenContent(
-    showDetail: ShowDetail,
-    episodesList: List<Episode>,
+    uiState: PodcastShowUiState,
     navController: NavController,
     onLoadMoreEpisodes: () -> Unit
 ) {
-    val episodes = remember { mutableStateListOf<Episode>() }
+    var episodeList by rememberSaveable { mutableStateOf(uiState.episodes) }
+    LaunchedEffect(uiState.episodes) { episodeList = uiState.episodes }
     val lazyListState = rememberLazyListState()
-    val layoutInfo by remember { derivedStateOf { lazyListState.layoutInfo } }
-    LaunchedEffect(true) { episodes.addAll(episodesList) }
+    val layoutInfo = remember { derivedStateOf { lazyListState.layoutInfo } }
+    val context = LocalContext.current
     Box(modifier = Modifier.fillMaxSize()) {
+        if (uiState.isLoading) {
+            CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+        }
+
+        if (uiState.isError) {
+            Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
+        }
+
         LazyColumn(state = lazyListState) {
-            item { PodcastShowDetail(showDetail) }
-            itemsIndexed(episodes) { index, episode ->
+            item { uiState.showDetail?.let { PodcastShowDetail(it) } }
+            itemsIndexed(episodeList) { index, episode ->
                 key(episode.id) {
                     PodcastShowEpisodeItem(episode, modifier = Modifier
                         .clickable {
@@ -45,16 +56,12 @@ fun PodcastShowScreenContent(
                         }
                         .padding(16.dp))
                 }
-                if (index != episodes.lastIndex) {
-                    Divider()
-                }
+                if (index != episodeList.lastIndex) Divider()
             }
         }
-        if (layoutInfo.visibleItemsInfo.lastOrNull()?.index == layoutInfo.totalItemsCount - 1) {
-            LaunchedEffect(Unit) { onLoadMoreEpisodes() }
-        }
-        IconButton(onClick = { navController.popBackStack() }) {
-            Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = null)
+
+        if (layoutInfo.value.visibleItemsInfo.lastOrNull()?.index == layoutInfo.value.totalItemsCount - 1) {
+            onLoadMoreEpisodes()
         }
     }
 }
