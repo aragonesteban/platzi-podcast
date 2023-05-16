@@ -1,4 +1,4 @@
-package com.example.platzipodcasts.presentation.podcastshow
+package com.example.platzipodcasts.presentation.podcastshow.screen
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,6 +12,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import androidx.paging.compose.collectAsLazyPagingItems
+import com.example.platzipodcasts.presentation.podcastshow.viewmodels.PodcastShowViewModel
+import com.example.platzipodcasts.presentation.podcastshow.widgets.PodcastShowScreenContent
 
 @Composable
 fun PodcastShowScreen(
@@ -22,8 +25,8 @@ fun PodcastShowScreen(
     Box(modifier = Modifier.fillMaxSize()) {
         PodcastShowScreenContent(
             uiState = viewModel.uiState.collectAsState().value,
+            viewModel.episodesList.collectAsLazyPagingItems(),
             navController = navController,
-            onLoadMoreEpisodes = { viewModel.getMoreEpisodes() }
         )
         IconButton(onClick = { navController.popBackStack() }) {
             Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = null)
@@ -31,6 +34,5 @@ fun PodcastShowScreen(
     }
     LaunchedEffect(true) {
         viewModel.getShowDetailById(podcastShowId)
-        viewModel.getEpisodesByShowId(podcastShowId)
     }
 }

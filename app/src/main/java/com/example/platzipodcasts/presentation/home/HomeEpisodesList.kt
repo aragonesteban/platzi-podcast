@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.platzipodcasts.domain.models.Episode
-import com.example.platzipodcasts.presentation.podcastshow.PodcastShowEpisodeItem
+import com.example.platzipodcasts.presentation.podcastshow.widgets.PodcastShowEpisodeItem
 
 @Composable
 fun HomeEpisodesList(

@@ -1,4 +1,4 @@
-package com.example.platzipodcasts.presentation.podcastshow
+package com.example.platzipodcasts.presentation.podcastshow.widgets
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
