@@ -29,8 +29,7 @@ fun HomeItem(
     Column(modifier = modifier) {
         Card(
             modifier = modifierCard,
-            shape = RoundedCornerShape(16.dp),
-            elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
+            shape = RoundedCornerShape(10.dp),
             content = {
                 AsyncImage(
                     model = image,
