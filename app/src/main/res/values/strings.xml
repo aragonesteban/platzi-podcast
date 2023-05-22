@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name">PlatziPodcasts</string>
-    <string name="btn_continue_welcome_screen">Continuar</string>
-    <string name="label_carousel_item_1">Podcast #1 de latinoamerica</string>
-    <string name="label_carousel_item_2">Conoce historias de crecimiento profesional de estudiantes, profesores y miembro del Platzi Team</string>
-    <string name="label_carousel_item_3">Aprende sobre cómo funciona el mundo de la tecnología.</string>
+    <string name="btn_next_welcome_screen">Next</string>
+    <string name="btn_skip_welcome_screen">Skip</string>
+    <string name="btn_continue_welcome_screen">Continue</string>
+    <string name="label_carousel_item_title_1">Discover your favorite podcast</string>
+    <string name="label_carousel_item_description_1">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
+    <string name="label_carousel_item_title_2">Learn with professionals of your industry</string>
+    <string name="label_carousel_item_description_2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tristique nunc at massa venenatis.</string>
+    <string name="label_carousel_item_title_3">Connect your skills with the world of technology</string>
+    <string name="label_carousel_item_description_3">Ut ac vestibulum sem, dignissim porta nisl.</string>
 </resources>

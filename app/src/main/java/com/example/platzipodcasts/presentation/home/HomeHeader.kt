@@ -18,7 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.platzipodcasts.ui.theme.md_theme_light_onSurface
+import com.example.platzipodcasts.ui.theme.Grey900
 
 @Composable
 fun HomeHeader(modifier: Modifier = Modifier) {
@@ -34,19 +34,19 @@ fun HomeHeader(modifier: Modifier = Modifier) {
                 text = "Hey you!",
                 style = MaterialTheme.typography.headlineSmall,
                 fontWeight = FontWeight.SemiBold,
-                color = md_theme_light_onSurface
+                color = Grey900
             )
             Text(
                 text = "Encuentra los Podcasts creados por Platzi",
                 style = MaterialTheme.typography.labelLarge,
                 modifier = Modifier.padding(top = 8.dp),
-                color = md_theme_light_onSurface
+                color = Grey900
             )
         }
         IconButton(
             onClick = { }, modifier = Modifier.size(48.dp)
         ) {
-            Icon(Icons.Default.Search, contentDescription = "", tint = md_theme_light_onSurface)
+            Icon(Icons.Default.Search, contentDescription = "", tint = Grey900)
         }
     }
 }

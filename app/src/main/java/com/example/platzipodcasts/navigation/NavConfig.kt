@@ -9,7 +9,7 @@ import androidx.navigation.navArgument
 import com.example.platzipodcasts.presentation.episode.EpisodeScreen
 import com.example.platzipodcasts.presentation.home.HomeScreen
 import com.example.platzipodcasts.presentation.podcastshow.screen.PodcastShowScreen
-import com.example.platzipodcasts.presentation.welcome.WelcomeScreen
+import com.example.platzipodcasts.presentation.welcome.screen.WelcomeScreen
 
 @Composable
 fun NavConfig() {

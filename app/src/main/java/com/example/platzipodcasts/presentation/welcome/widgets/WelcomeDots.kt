@@ -1,10 +1,9 @@
-package com.example.platzipodcasts.presentation.welcome
+package com.example.platzipodcasts.presentation.welcome.widgets
 
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.TweenSpec
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -17,10 +16,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.platzipodcasts.ui.theme.md_theme_dark_secondary
-import com.example.platzipodcasts.ui.theme.md_theme_dark_secondaryContainer
-import com.example.platzipodcasts.ui.theme.md_theme_light_inversePrimary
-import com.example.platzipodcasts.ui.theme.md_theme_light_surfaceTint
+import com.example.platzipodcasts.ui.theme.Grey300
+import com.example.platzipodcasts.ui.theme.Grey900
 
 @Composable
 fun WelcomeDots(imagesListSize: Int, currentPositionCarousel: Int) {
@@ -35,7 +32,8 @@ fun WelcomeDots(imagesListSize: Int, currentPositionCarousel: Int) {
 
             val sizeAsState = animateFloatAsState(
                 targetValue = if (index == currentPositionCarousel) targetSize.value else 10.dp.value,
-                animationSpec = TweenSpec(durationMillis = 100, easing = LinearEasing)
+                animationSpec = TweenSpec(durationMillis = 100, easing = LinearEasing),
+                label = ""
             )
             Box(
                 modifier = Modifier
@@ -53,11 +51,9 @@ fun WelcomeDots(imagesListSize: Int, currentPositionCarousel: Int) {
     }
 }
 
-@Composable
 fun getColorDotDarkLightMode(index: Int, currentPositionCarousel: Int): Color {
-    val isDarkMode = isSystemInDarkTheme()
     return if (index == currentPositionCarousel)
-        if (isDarkMode) md_theme_light_inversePrimary else md_theme_light_surfaceTint
+        Grey900
     else
-        if (isDarkMode) md_theme_dark_secondaryContainer else md_theme_dark_secondary
+        Grey300
 }

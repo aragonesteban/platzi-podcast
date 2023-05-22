@@ -13,11 +13,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.platzipodcasts.ui.theme.md_theme_light_primaryContainer
 
 @Composable
 fun HomeScreen(
@@ -30,7 +30,7 @@ fun HomeScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(md_theme_light_primaryContainer)
+            .background(Color.White)
     ) {
         HomeHeader()
         Box(
