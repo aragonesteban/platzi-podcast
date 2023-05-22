@@ -1,7 +1,6 @@
 package com.example.platzipodcasts.data.remote.episodes
 
 import com.squareup.moshi.Json
-import java.time.Duration
 
 data class EpisodesResponse(
     val response: EpisodesItemsResponse?,

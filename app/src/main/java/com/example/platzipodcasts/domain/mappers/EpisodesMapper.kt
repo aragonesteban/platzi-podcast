@@ -7,7 +7,6 @@ import com.example.platzipodcasts.domain.models.Episodes
 import com.example.platzipodcasts.domain.utils.PodcastMapper
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import java.util.Locale
 import javax.inject.Inject
 
 class EpisodesMapper @Inject constructor() : PodcastMapper<EpisodesResponse, Episodes> {
