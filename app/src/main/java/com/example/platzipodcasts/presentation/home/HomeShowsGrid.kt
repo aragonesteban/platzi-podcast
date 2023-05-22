@@ -25,12 +25,13 @@ fun HomeShowsGrid(showsList: List<PodcastShow>, onClickShow: (Int) -> Unit) {
             horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             items(showsList) {
-                HomeItem(image = it.imageUrl,
-                    text = null,
-                    modifierCard = Modifier
+                HomeItem(
+                    image = it.imageUrl,
+                    modifier = Modifier
                         .fillMaxWidth()
                         .height(100.dp)
-                        .clickable { onClickShow(it.id) })
+                        .clickable { onClickShow(it.id) }
+                )
             }
         }
     }

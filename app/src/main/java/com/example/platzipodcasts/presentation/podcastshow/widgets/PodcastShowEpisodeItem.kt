@@ -2,6 +2,7 @@ package com.example.platzipodcasts.presentation.podcastshow.widgets
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PlayCircleFilled
 import androidx.compose.material3.Card
@@ -26,6 +27,8 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.platzipodcasts.R
 import com.example.platzipodcasts.domain.models.Episode
+import com.example.platzipodcasts.presentation.utils.advancedShadow
+import com.example.platzipodcasts.ui.theme.Grey900
 
 @Composable
 fun PodcastShowEpisodeItem(episode: Episode, modifier: Modifier = Modifier) {
@@ -36,7 +39,16 @@ fun PodcastShowEpisodeItem(episode: Episode, modifier: Modifier = Modifier) {
             .fillMaxWidth()
             .height(IntrinsicSize.Max)
     ) {
-        Card(modifier = Modifier.size(width = 80.dp, height = 80.dp)) {
+        Card(
+            modifier = Modifier
+                .size(width = 80.dp, height = 80.dp)
+                .advancedShadow(Grey900, alpha = 0.2F, shadowBlurRadius = 10.dp),
+            shape = RoundedCornerShape(
+                topEnd = 12.dp,
+                bottomEnd = 12.dp,
+                bottomStart = 12.dp
+            ),
+        ) {
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
                     .data(episode.imageUrl)

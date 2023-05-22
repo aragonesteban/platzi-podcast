@@ -20,8 +20,7 @@ fun HomeShowsCarousel(showsList: List<PodcastShow>, onClickShow: (Int) -> Unit) 
             items(showsList) {
                 HomeItem(
                     image = it.imageUrl,
-                    text = null,
-                    modifierCard = Modifier
+                    modifier = Modifier
                         .size(width = 280.dp, height = 180.dp)
                         .clickable { onClickShow(it.id) }
                 )
