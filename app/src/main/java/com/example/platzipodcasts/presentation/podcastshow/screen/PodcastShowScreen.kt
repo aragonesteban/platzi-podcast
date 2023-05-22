@@ -1,11 +1,9 @@
 package com.example.platzipodcasts.presentation.podcastshow.screen
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -15,7 +13,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -24,8 +21,6 @@ import androidx.navigation.NavController
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.platzipodcasts.presentation.podcastshow.viewmodels.PodcastShowViewModel
 import com.example.platzipodcasts.presentation.podcastshow.widgets.PodcastShowScreenContent
-import com.example.platzipodcasts.presentation.utils.advancedShadow
-import com.example.platzipodcasts.ui.theme.Grey900
 
 @Composable
 fun PodcastShowScreen(

@@ -1,8 +1,9 @@
-package com.example.platzipodcasts.data.mappers
+package com.example.platzipodcasts.domain.mappers
 
 import com.example.platzipodcasts.data.remote.shows.PodcastShowsResponse
 import com.example.platzipodcasts.data.utils.getShowId
 import com.example.platzipodcasts.domain.models.PodcastShow
+import com.example.platzipodcasts.domain.utils.PodcastMapper
 import javax.inject.Inject
 
 class PodcastShowsMapper @Inject constructor() :

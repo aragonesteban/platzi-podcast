@@ -1,18 +1,16 @@
 package com.example.platzipodcasts.data.repository.episodes
 
-import com.example.platzipodcasts.data.mappers.PodcastMapper
+import com.example.platzipodcasts.domain.utils.PodcastMapper
 import com.example.platzipodcasts.data.remote.episodes.EpisodesApi
 import com.example.platzipodcasts.data.remote.episodes.EpisodesResponse
 import com.example.platzipodcasts.data.remote.utils.handleNetworkResult
 import com.example.platzipodcasts.data.remote.utils.handleRequest
 import com.example.platzipodcasts.domain.models.Episode
 import com.example.platzipodcasts.domain.models.Episodes
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import retrofit2.Response
 import javax.inject.Inject
 
 class EpisodesRepositoryImpl @Inject constructor(

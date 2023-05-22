@@ -19,5 +19,7 @@ data class EpisodeItemResponse(
     val title: String?,
     @Json(name = "image_original_url")
     val imageOriginalUrl: String?,
-    val duration: Int?
+    val duration: Int?,
+    @Json(name = "published_at")
+    val publishedAt: String?
 )

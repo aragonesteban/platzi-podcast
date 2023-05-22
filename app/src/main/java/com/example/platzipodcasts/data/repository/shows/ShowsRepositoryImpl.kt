@@ -1,6 +1,6 @@
 package com.example.platzipodcasts.data.repository.shows
 
-import com.example.platzipodcasts.data.mappers.PodcastMapper
+import com.example.platzipodcasts.domain.utils.PodcastMapper
 import com.example.platzipodcasts.data.remote.shows.PodcastShowsResponse
 import com.example.platzipodcasts.data.remote.shows.ShowDetailResponse
 import com.example.platzipodcasts.data.remote.shows.ShowsApi

@@ -73,7 +73,7 @@ fun PodcastShowEpisodeItem(episode: Episode, modifier: Modifier = Modifier) {
                 overflow = TextOverflow.Ellipsis,
             )
             Text(
-                text = episode.duration,
+                text = "${episode.publishedAt} · ${episode.duration}",
                 style = MaterialTheme.typography.labelMedium,
                 color = MaterialTheme.colorScheme.outline,
                 modifier = Modifier.padding(top = 8.dp)
@@ -94,6 +94,6 @@ fun PodcastShowEpisodeItem(episode: Episode, modifier: Modifier = Modifier) {
 @Composable
 fun PodcastShowEpisodeItemPreview() {
     PodcastShowEpisodeItem(
-        Episode(1, "My Episode My Episode My Episode", "", "14:10")
+        Episode(1, "My Episode My Episode My Episode", "", "14:10", "16 feb 2016")
     )
 }

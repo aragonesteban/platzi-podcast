@@ -9,5 +9,6 @@ data class Episode(
     val id: Int,
     val title: String,
     val imageUrl: String,
-    val duration: String
+    val duration: String,
+    val publishedAt: String
 )
