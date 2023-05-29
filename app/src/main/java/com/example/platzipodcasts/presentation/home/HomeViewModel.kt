@@ -38,9 +38,8 @@ class HomeViewModel @Inject constructor(
                 .catch { _uiState.value = HomeUiState.Error }
                 .collect { contentHome ->
                     _uiState.value = HomeUiState.ShowContentHome(
-                        showsCarouselList = contentHome.first.take(3),
-                        showsGrid = contentHome.first.takeLast(4),
-                        episodesList = contentHome.second.take(2),
+                        showsCarouselList = contentHome.first,
+                        episodesList = contentHome.second.take(4),
                     )
                 }
         }

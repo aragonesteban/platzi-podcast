@@ -9,7 +9,6 @@ sealed interface HomeUiState {
 
     data class ShowContentHome(
         val showsCarouselList: List<PodcastShow>,
-        val showsGrid: List<PodcastShow>,
         val episodesList: List<Episode>
     ) : HomeUiState
 

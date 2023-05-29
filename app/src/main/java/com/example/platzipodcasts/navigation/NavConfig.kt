@@ -14,7 +14,7 @@ import com.example.platzipodcasts.presentation.welcome.screen.WelcomeScreen
 @Composable
 fun NavConfig() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = NavGraphScreens.WelcomeScreen.route) {
+    NavHost(navController = navController, startDestination = NavGraphScreens.HomeScreen.route) {
         composable(NavGraphScreens.WelcomeScreen.route) {
             WelcomeScreen {
                 navController.navigate(NavGraphScreens.HomeScreen.route)

@@ -1,7 +1,8 @@
 package com.example.platzipodcasts.presentation.home
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -13,8 +14,11 @@ fun HomeEpisodesList(
     episodesList: List<Episode>,
     navigateToEpisode: (Int) -> Unit
 ) {
-    Column(modifier = Modifier.padding(top = 16.dp)) {
-        HomeTitleSection(title = "Episodios Populares", modifier = Modifier.padding(start = 16.dp))
+    Column(modifier = Modifier.padding(top = 32.dp)) {
+        HomeTitleSection(
+            title = "Episodios Populares",
+            modifier = Modifier.padding(start = 16.dp, bottom = 8.dp)
+        )
         episodesList.forEach { episode ->
             PodcastShowEpisodeItem(
                 episode = episode,
